@@ -1,4 +1,6 @@
 let gridAmt = 16;
+const colors = ["red", "green", "blue"];
+
 function createGrids(gridNum) {
   const container = document.querySelector(".container");
 
@@ -12,10 +14,19 @@ function createGrids(gridNum) {
     console.log(row.style.height);
     for (let j = 0; j < gridNum; j++) {
       const rowElm = document.createElement("div");
+      let opacity = 0.1;
+
       rowElm.classList.add("row-elm");
       rowElm.style.width = 100 / gridNum + "%";
+      rowElm.style.opacity = opacity;
       rowElm.addEventListener("mouseenter", function () {
-        rowElm.style.backgroundColor = "black";
+        let red = Math.floor(Math.random() * 256);
+        let green = Math.floor(Math.random() * 256);
+        let blue = Math.floor(Math.random() * 256);
+        rowElm.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+        rowElm.style.opacity = opacity;
+        opacity += 0.1;
+        console.log(rowElm.style.opacity);
       })
       row.appendChild(rowElm);
     }
